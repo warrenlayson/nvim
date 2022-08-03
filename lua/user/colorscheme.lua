@@ -1,4 +1,4 @@
-local colorscheme = "onedarker"
+local colorscheme = "darkplus"
 
 -- colorscheme config
 -- vim.g.tokyonight_style = "storm"
