@@ -19,3 +19,5 @@ require "user.whichkey"
 require "user.alpha"
 require "user.lsp"
 require 'user.colorizer'
+require "user.winbar"
+require "user.navic"

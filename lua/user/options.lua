@@ -43,3 +43,5 @@ vim.opt.iskeyword:append("-")
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
+
+vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"

@@ -1,9 +1,10 @@
 -- Use 'q' to quit from common plugins
 vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = { "qf", "help", "man", "lspinfo", "spectre_panel", "lir" },
+  pattern = { "qf", "help", "man", "lspinfo", "spectre_panel", "lir", "DressingSelect", "MarkDown" },
   callback = function()
     vim.cmd [[
       nnoremap <silent> <buffer> q :close<CR> 
+      nnoremap <silent> <buffer> <esc> :close<CR>
       set nobuflisted 
     ]]
   end,
@@ -49,9 +50,9 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
 vim.api.nvim_create_autocmd("LspAttach", {
   group = "LspAttach_inlayhints",
-  callback = function (args)
+  callback = function(args)
     if not (args.data and args.data.client_id) then
-     return
+      return
     end
 
     local bufnr = args.buf
@@ -61,3 +62,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
   end
 })
+
+if vim.fn.has "nvim-0.8" == 1 then
+  vim.api.nvim_create_autocmd(
+    { "CursorMoved", "CursorHold", "BufWinEnter", "BufFilePost", "InsertEnter", "BufWritePost", "TabClosed" },
+    {
+      callback = function()
+        local status_ok, _ = pcall(vim.api.nvim_buf_get_var, 0, "lsp_floating_window")
+        if not status_ok then
+          require('user.winbar').get_winbar()
+        end
+      end
+    }
+  )
+end
