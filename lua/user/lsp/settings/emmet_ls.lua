@@ -1,12 +1,9 @@
 return {
-  cmd = { "ls_emmet", "--stdio" },
   filetypes = {
     "html",
     "css",
     "scss",
-    "javascript",
     "javascriptreact",
-    "typescript",
     "typescriptreact",
     "haml",
     "xml",
@@ -20,4 +17,11 @@ return {
     "hbs",
     "handlebars",
   },
+  init_options = {
+    html = {
+      options = {
+        ["bem.enabled"] = true
+      }
+    }
+  }
 }
