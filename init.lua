@@ -5,4 +5,5 @@ require "user.colorscheme"
 require "user.cmp"
 require "user.telescope"
 require "user.comment"
-
+require "user.whichkey"
+require "user.nvim-tree"
