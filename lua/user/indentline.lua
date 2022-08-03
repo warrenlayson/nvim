@@ -14,5 +14,9 @@ indent_blankline.setup {
     "help",
     "packer",
     "NvimTree",
+    "dashboard",
+    "startify",
+    "text",
+    "neogitstatus"
   },
 }
