@@ -21,3 +21,4 @@ require "user.lsp"
 require 'user.colorizer'
 require "user.winbar"
 require "user.navic"
+require "user.lsp-inlayhints"

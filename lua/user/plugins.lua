@@ -52,14 +52,11 @@ return packer.startup(function(use)
   use 'williamboman/mason-lspconfig.nvim'
   use 'jose-elias-alvarez/null-ls.nvim' -- for formatters and linters
   use 'ray-x/lsp_signature.nvim'
-  -- TODO
   use 'SmiteshP/nvim-navic'
-  -- TODO
   use 'b0o/SchemaStore.nvim'
   use 'RRethy/vim-illuminate'
   -- TODO
   use 'j-hui/fidget.nvim'
-  -- TODO
   use 'lvimuser/lsp-inlayhints.nvim'
   use { 'https://git.sr.ht/~whynothugo/lsp_lines.nvim' }
 
