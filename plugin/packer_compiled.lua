@@ -134,6 +134,11 @@ _G.packer_plugins = {
     path = "/home/warren/.local/share/nvim/site/pack/packer/start/cybu.nvim",
     url = "https://github.com/ghillb/cybu.nvim"
   },
+  ["darkplus.nvim"] = {
+    loaded = true,
+    path = "/home/warren/.local/share/nvim/site/pack/packer/start/darkplus.nvim",
+    url = "https://github.com/lunarvim/darkplus.nvim"
+  },
   ["dressing.nvim"] = {
     loaded = true,
     path = "/home/warren/.local/share/nvim/site/pack/packer/start/dressing.nvim",

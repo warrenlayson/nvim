@@ -154,6 +154,7 @@ local mappings = {
     },
     f = { "<cmd>lua vim.lsp.buf.format{async=true}<cr>", "Format" },
     i = { "<cmd>LspInfo<cr>", "Info" },
+    h = { "<cmd>lua require('lsp-inlayhints').toggle()<cr>", "Toggle Hints"},
     I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
     j = {
       "<cmd>lua vim.lsp.diagnostic.goto_next({ buffer = 0 })<CR>",

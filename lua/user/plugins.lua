@@ -51,7 +51,6 @@ return packer.startup(function(use)
   use 'williamboman/mason.nvim'
   use 'williamboman/mason-lspconfig.nvim'
   use 'jose-elias-alvarez/null-ls.nvim' -- for formatters and linters
-  -- TODO
   use 'ray-x/lsp_signature.nvim'
   -- TODO
   use 'SmiteshP/nvim-navic'
@@ -62,7 +61,6 @@ return packer.startup(function(use)
   use 'j-hui/fidget.nvim'
   -- TODO
   use 'lvimuser/lsp-inlayhints.nvim'
-  -- TODO
   use { 'https://git.sr.ht/~whynothugo/lsp_lines.nvim' }
 
   -- Completions
@@ -82,7 +80,6 @@ return packer.startup(function(use)
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use 'p00f/nvim-ts-rainbow'
   use 'ShooTeX/nvim-treesitter-angular'
-  -- TODO
   use 'windwp/nvim-ts-autotag'
 
   -- Telescope
@@ -90,15 +87,12 @@ return packer.startup(function(use)
   use 'nvim-telescope/telescope-media-files.nvim'
 
   -- Color
-  -- TODO
   use 'NvChad/nvim-colorizer.lua'
 
   -- Utility
-  -- TODO
   use 'rcarriga/nvim-notify'
   use 'moll/vim-bbye'
   use 'lewis6991/impatient.nvim'
-  -- TODO
   use 'stevearc/dressing.nvim'
   -- TODO
   use 'ghillb/cybu.nvim'
@@ -109,7 +103,7 @@ return packer.startup(function(use)
   use 'kyazdani42/nvim-web-devicons'
 
   -- Statusline
-  use 'nvim-lualine/lualine.nvim' 
+  use 'nvim-lualine/lualine.nvim'
 
   -- Startup
   use 'goolord/alpha-nvim'
@@ -119,7 +113,6 @@ return packer.startup(function(use)
 
   -- File Explorer
   use 'kyazdani42/nvim-tree.lua'
-  
 
   -- Comment
   use 'numToStr/Comment.nvim'
@@ -142,7 +135,6 @@ return packer.startup(function(use)
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
 
   -- Keybinding
-  -- TODO
   use 'folke/which-key.nvim'
 
   -- Typescript TODO: set this up, also add keybinds to ftplugin
@@ -159,6 +151,7 @@ return packer.startup(function(use)
   -- Colorscheme
   use "folke/tokyonight.nvim"
   use "lunarvim/onedarker.nvim"
+  use "lunarvim/darkplus.nvim"
 
 
   -- git
