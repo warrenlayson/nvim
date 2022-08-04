@@ -55,7 +55,7 @@ M.setup = function()
 end
 
 local function lsp_highlight_document(client)
-  local ilu_status_ok, illuminate = pcall(require, 'illuminate')
+  local ilu_status_ok, illuminate = pcall(require, "illuminate")
   if not ilu_status_ok then
     return
   end
@@ -129,6 +129,5 @@ function M.remove_augroup(name)
 end
 
 vim.cmd [[ command! LspToggleAutoFormat execute 'lua require("user.lsp.handlers").toggle_format_on_save()' ]]
-
 
 return M

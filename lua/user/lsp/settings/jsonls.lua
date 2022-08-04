@@ -10,11 +10,9 @@ return {
   settings = {
     json = {
       schemas = schemastore.json.schemas(),
-    }
+    },
   },
   setup = {
-    commands = {
-
-    }
-  }
+    commands = {},
+  },
 }

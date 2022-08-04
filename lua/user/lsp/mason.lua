@@ -45,32 +45,31 @@ if not lspconfig_status_ok then
 end
 
 local common_setup_opts = {
-  on_attach = require('user.lsp.handlers').on_attach,
-  capabilities = require('user.lsp.handlers').capabilities
+  on_attach = require("user.lsp.handlers").on_attach,
+  capabilities = require("user.lsp.handlers").capabilities,
 }
 
 for _, server in ipairs(mason_lspconfig.get_installed_servers()) do
   local opts = vim.deepcopy(common_setup_opts)
+
   local has_custom_opts, server_custom_opts = pcall(require, "user.lsp.settings." .. server)
-
-  if server == "tsserver" then
-    local ts_status_ok, typescript = pcall(require, "typescript")
-    if ts_status_ok then
-      typescript.setup {
-        disable_commands = false,
-        debug = false,
-        server = {
-          on_attach = opts.on_attach,
-          capabilities = opts.capabilities,
-        }
-      }
-      goto CONTINUE
-    end
-  end
-
   if has_custom_opts then
     opts = vim.tbl_deep_extend("force", server_custom_opts, opts)
   end
+
+  if server == "tsserver" then
+    local ts_status_ok, typescript = pcall(require, "typescript")
+    if not ts_status_ok then
+      return
+    end
+    typescript.setup {
+      disable_commands = false,
+      debug = false,
+      server = opts,
+    }
+    goto continue
+  end
+
   lspconfig[server].setup(opts)
-  ::CONTINUE::
+  ::continue::
 end

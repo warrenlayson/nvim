@@ -1,6 +1,6 @@
 return {
   cmd = { "py" },
-	settings = {
+  settings = {
     python = {
       analysis = {
         typeCheckingMode = "basic",
@@ -8,8 +8,8 @@ return {
         inlayHints = {
           variableTypes = true,
           functionReturnType = true,
-        }
-      }
-    }
-	},
+        },
+      },
+    },
+  },
 }

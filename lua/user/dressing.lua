@@ -5,7 +5,7 @@ end
 
 dressing.setup {
   input = {
-     -- Set to false to disable the vim.ui.input implementation
+    -- Set to false to disable the vim.ui.input implementation
     enabled = true,
 
     -- Default prompt string
@@ -156,5 +156,5 @@ dressing.setup {
 
     -- see :help dressing_get_config
     get_config = nil,
-  }
+  },
 }

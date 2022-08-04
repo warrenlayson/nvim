@@ -17,6 +17,6 @@ indent_blankline.setup {
     "dashboard",
     "startify",
     "text",
-    "neogitstatus"
+    "neogitstatus",
   },
 }

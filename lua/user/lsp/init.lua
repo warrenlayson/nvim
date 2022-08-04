@@ -16,23 +16,23 @@ M.server_capabilities = function()
     prompt = "Select client:",
     format_item = function(item)
       return "capabilities for: " .. item
-    end
+    end,
   }, function(choice)
     print(vim.inspect.vim.lsp.get_active_clients()[active_client_map[choice]])
     vim.pretty_print(vim.lsp.get_active_clients()[active_client_map[choice]])
   end)
 end
 
-require("user.lsp.lsp-signature")
-require('user.lsp.mason')
+require "user.lsp.lsp-signature"
+require "user.lsp.mason"
 require("user.lsp.handlers").setup()
-require("user.lsp.null-ls")
+require "user.lsp.null-ls"
 
-local status_ok_1, lines = pcall(require, 'lsp_lines')
+local status_ok_1, lines = pcall(require, "lsp_lines")
 if not status_ok_1 then
   return
 end
 
-lines.setup{}
+lines.setup {}
 
 return M

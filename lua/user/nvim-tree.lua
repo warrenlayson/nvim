@@ -12,23 +12,23 @@ local tree_cb = nvim_tree_config.nvim_tree_callback
 
 nvim_tree.setup {
   hijack_directories = {
-    enable = false
+    enable = false,
   },
   ignore_ft_on_setup = {
     "startify",
     "dashboard",
-    "alpha"
+    "alpha",
   },
   filters = {
     custom = { ".git" },
-    exclude = { ".gitignore" }
+    exclude = { ".gitignore" },
   },
   update_cwd = true,
   renderer = {
     add_trailing = false,
     group_empty = false,
     highlight_git = false,
-    highlight_opened_files = 'none',
+    highlight_opened_files = "none",
     root_folder_modifier = ":t",
     indent_markers = {
       enable = false,
@@ -36,7 +36,7 @@ nvim_tree.setup {
         corner = "└ ",
         edge = "│ ",
         none = "  ",
-      }
+      },
     },
     icons = {
       webdev_colors = true,
@@ -47,7 +47,7 @@ nvim_tree.setup {
         file = true,
         folder = true,
         folder_arrow = true,
-        git = true
+        git = true,
       },
       glyphs = {
         default = "",
@@ -87,7 +87,7 @@ nvim_tree.setup {
   update_focused_file = {
     enable = true,
     update_cwd = true,
-    ignore_list = {}
+    ignore_list = {},
   },
   git = {
     enable = true,

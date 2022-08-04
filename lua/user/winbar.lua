@@ -143,4 +143,3 @@ M.get_winbar = function()
 end
 
 return M
-

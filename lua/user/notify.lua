@@ -25,7 +25,6 @@ notify.setup {
 
   -- Minimum width for notification windows
   minimum_width = 10,
-
 }
 
 vim.notify = notify
@@ -38,4 +37,3 @@ vim.notify = function(msg, ...)
 
   notify_filter(msg, ...)
 end
-

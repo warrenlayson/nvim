@@ -9,10 +9,10 @@ configs.setup {
   ignore_install = { "" }, -- List of parsers to ignore installing
   highlight = {
     enable = true, -- false will disable the whole extension
-    disable = { "markdown " }
+    disable = { "markdown " },
   },
   autopairs = {
-    enable = true
+    enable = true,
   },
   autotag = { enable = true },
   indent = { enable = true, disable = { "python", "css" } },
@@ -27,10 +27,10 @@ configs.setup {
       "#c7aA6D",
     }, -- table of hex strings
     -- termcolors = {} -- table of colour name strings,
-    disable = { "html" }
+    disable = { "html" },
   },
   context_commentstring = {
     enable = true,
     enable_autocmd = false,
-  }
+  },
 }

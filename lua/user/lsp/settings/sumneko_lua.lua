@@ -1,7 +1,7 @@
 return {
-	settings = {
+  settings = {
 
-		Lua = {
+    Lua = {
       format = {
         enable = false,
       },
@@ -14,18 +14,18 @@ return {
         semicolon = "Disable", -- "All", "SameLine", "Disable"
         setType = true,
       },
-			diagnostics = {
-				globals = { "vim" },
-			},
-			workspace = {
-				library = {
-					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-					[vim.fn.stdpath("config") .. "/lua"] = true,
-				},
-			},
+      diagnostics = {
+        globals = { "vim" },
+      },
+      workspace = {
+        library = {
+          [vim.fn.expand "$VIMRUNTIME/lua"] = true,
+          [vim.fn.stdpath "config" .. "/lua"] = true,
+        },
+      },
       telemetry = {
-        enable = false
-      }
-		},
-	},
+        enable = false,
+      },
+    },
+  },
 }
