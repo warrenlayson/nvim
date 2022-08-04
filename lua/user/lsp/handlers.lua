@@ -89,7 +89,39 @@ local function lsp_keymaps(bufnr)
   -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
 end
 
+M.lsp_format = function(bufnr)
+  vim.lsp.buf.format {
+    filter = function(client)
+      return client.name == "null-ls"
+    end,
+    bufnr = bufnr,
+    async = true,
+  }
+end
+
+M.lsp_range_format = function(bufnr)
+  vim.lsp.buf.range_formatting {
+    filter = function(client)
+      return client.name == "null-ls"
+    end,
+    bufnr = bufnr,
+    async = true,
+  }
+end
+
+-- local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
 M.on_attach = function(client, bufnr)
+  -- if client.supports_method "textDocument/formatting" then
+  --   vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
+  --   vim.api.nvim_create_autocmd("BufWritePre", {
+  --     group = augroup,
+  --     buffer = bufnr,
+  --     callback = function()
+  --       M.lsp_formatting(bufnr)
+  --     end,
+  --   })
+  -- end
   lsp_keymaps(bufnr)
   lsp_highlight_document(client)
   attach_navic(client, bufnr)

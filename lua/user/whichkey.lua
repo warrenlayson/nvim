@@ -152,7 +152,7 @@ local mappings = {
       "<cmd>Telescope lsp_workspace_diagnostics<cr>",
       "Workspace Diagnostics",
     },
-    f = { "<cmd>lua vim.lsp.buf.format{async=true}<cr>", "Format" },
+    f = { "<cmd>lua require('user.lsp.handlers').lsp_format()<cr>", "Format" },
     F = { "<cmd>LspToggleAutoFormat<cr>", "Toggle Autoformat" },
     i = { "<cmd>LspInfo<cr>", "Info" },
     h = { "<cmd>lua require('lsp-inlayhints').toggle()<cr>", "Toggle Hints" },
@@ -175,14 +175,21 @@ local mappings = {
       "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
       "Workspace Symbols",
     },
-    -- t = {
-    --   name = "Typescript",
-    --   o = { "Organize Imports"},
-    --   r = { "Rename File"},
-    --   i = { "Import All"},
-    --   c = { "Import Current"},
-    --   h = { "Toggle In Lay Hints"}
-    -- }
+  },
+
+  t = {
+    name = "Terminal",
+    ["1"] = { ":1ToggleTerm<cr>", "1" },
+    ["2"] = { ":2ToggleTerm<cr>", "2" },
+    ["3"] = { ":3ToggleTerm<cr>", "3" },
+    ["4"] = { ":4ToggleTerm<cr>", "4" },
+    n = { "<cmd>lua _NODE_TOGGLE()<cr>", "Node" },
+    u = { "<cmd>lua _NCDU_TOGGLE()<cr>", "NCDU" },
+    t = { "<cmd>lua _HTOP_TOGGLE()<cr>", "Htop" },
+    p = { "<cmd>lua _PYTHON_TOGGLE()<cr>", "Python" },
+    f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
+    h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
+    v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
   },
 }
 
@@ -197,6 +204,11 @@ local vopts = {
 
 local vmappings = {
   ["/"] = { '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>', "Comment" },
+  l = {
+    name = "LSP",
+    a = { "<ESC><CMD>lua vim.lsp.buf.range_code_action()<CR>", "Code Action " },
+    f = { "<ESC><CMD>lua require('user.lsp.handlers').lsp_range_format()<CR>", "Format" },
+  },
 }
 
 whichkey.setup(setup)
