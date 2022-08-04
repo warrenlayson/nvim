@@ -94,6 +94,7 @@ return packer.startup(function(use)
   use "ghillb/cybu.nvim"
   -- TODO
   use "lalitmee/browse.nvim"
+  use 'antoinemadec/FixCursorHold.nvim'
 
   -- Icons
   use "kyazdani42/nvim-web-devicons"
@@ -112,6 +113,7 @@ return packer.startup(function(use)
 
   -- Comment
   use "numToStr/Comment.nvim"
+  use "JoosepAlviste/nvim-ts-context-commentstring"
 
   -- Terminal
   use "akinsho/toggleterm.nvim"
