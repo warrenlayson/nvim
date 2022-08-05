@@ -77,6 +77,7 @@ return packer.startup(function(use)
   use "p00f/nvim-ts-rainbow"
   use "ShooTeX/nvim-treesitter-angular"
   use "windwp/nvim-ts-autotag"
+  use {"JoosepAlviste/nvim-ts-context-commentstring", event = "BufRead"}
 
   -- Telescope
   use "nvim-telescope/telescope.nvim"
@@ -94,7 +95,10 @@ return packer.startup(function(use)
   use "ghillb/cybu.nvim"
   -- TODO
   use "lalitmee/browse.nvim"
-  use 'antoinemadec/FixCursorHold.nvim'
+
+  -- TODO
+  -- Motion
+  use { "ggandor/leap.nvim", requires = "tpope/vim-repeat", event = "BufRead" }
 
   -- Icons
   use "kyazdani42/nvim-web-devicons"
@@ -113,7 +117,8 @@ return packer.startup(function(use)
 
   -- Comment
   use "numToStr/Comment.nvim"
-  use "JoosepAlviste/nvim-ts-context-commentstring"
+  -- TODO
+  use "folke/todo-comments.nvim"
 
   -- Terminal
   use "akinsho/toggleterm.nvim"
@@ -130,6 +135,7 @@ return packer.startup(function(use)
 
   -- Editing Support
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
+  use { "nacro90/numb.nvim", event = "BufRead" }
 
   -- Keybinding
   use "folke/which-key.nvim"
@@ -152,6 +158,8 @@ return packer.startup(function(use)
 
   -- git
   use "lewis6991/gitsigns.nvim"
+  -- TODO
+  use "f-person/git-blame.nvim"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
