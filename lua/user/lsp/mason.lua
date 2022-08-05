@@ -44,6 +44,19 @@ if not lspconfig_status_ok then
   return
 end
 
+local status_ok_2, nlsp = pcall(require, "nlspsettings")
+if not status_ok_2 then
+  return
+end
+
+nlsp.setup {
+  config_home = vim.fn.stdpath "config" .. "/nlsp-settings",
+  local_settings_dir = ".nlsp-settings",
+  local_settings_root_markers = { ".git" },
+  append_default_schemas = true,
+  loader = "json",
+}
+
 local common_setup_opts = {
   on_attach = require("user.lsp.handlers").on_attach,
   capabilities = require("user.lsp.handlers").capabilities,
@@ -68,6 +81,20 @@ for _, server in ipairs(mason_lspconfig.get_installed_servers()) do
       server = opts,
     }
     goto continue
+  end
+
+  if server == "sumneko_lua" then
+    local l_status_ok, lua_dev = pcall(require, "lua-dev")
+    if not l_status_ok then
+      return
+    end
+
+    opts = lua_dev.setup {
+      lspconfig = {
+        on_attach = opts.on_attach,
+        capabilities = opts.capabilities
+      }
+    }
   end
 
   lspconfig[server].setup(opts)

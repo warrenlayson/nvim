@@ -58,6 +58,7 @@ return packer.startup(function(use)
   use "j-hui/fidget.nvim"
   use "lvimuser/lsp-inlayhints.nvim"
   use { "https://git.sr.ht/~whynothugo/lsp_lines.nvim" }
+  use "tamago324/nlsp-settings.nvim"
 
   -- Completions
   use "hrsh7th/nvim-cmp" -- The complention plugin
@@ -136,6 +137,7 @@ return packer.startup(function(use)
   -- Editing Support
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
   use { "nacro90/numb.nvim", event = "BufRead" }
+  use "folke/lua-dev.nvim"
 
   -- Keybinding
   use "folke/which-key.nvim"
