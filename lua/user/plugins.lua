@@ -43,55 +43,139 @@ return packer.startup(function(use)
   -- Plugin Manager
   use "wbthomason/packer.nvim" -- Have packer manage itself
 
+  use "lewis6991/impatient.nvim"
+
   -- Lua Development
   use "nvim-lua/plenary.nvim" -- Useful lua functions used by lots of plugins
 
   -- LSP
-  use "neovim/nvim-lspconfig" -- enable LSP
-  use "williamboman/mason.nvim"
-  use "williamboman/mason-lspconfig.nvim"
-  use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
-  use "ray-x/lsp_signature.nvim"
-  use "SmiteshP/nvim-navic"
-  use "b0o/SchemaStore.nvim"
-  use "RRethy/vim-illuminate"
-  use "j-hui/fidget.nvim"
-  use "lvimuser/lsp-inlayhints.nvim"
-  use { "https://git.sr.ht/~whynothugo/lsp_lines.nvim" }
-  use "tamago324/nlsp-settings.nvim"
+  use {
+    "neovim/nvim-lspconfig",
+    config = function()
+      require "user.lsp"
+    end,
+    requires = {
+      { "b0o/SchemaStore.nvim" },
+      { "williamboman/mason.nvim" },
+      { "williamboman/mason-lspconfig.nvim" },
+      {
+        "jose-elias-alvarez/null-ls.nvim",
+        config = function()
+          require "user.lsp.null-ls"
+        end,
+        after = "nvim-lspconfig",
+      },
+      {
+        "ray-x/lsp_signature.nvim",
+        config = function()
+          require "user.lsp.lsp-signature"
+        end,
+        after = "nvim-lspconfig",
+      },
+      { "tamago324/nlsp-settings.nvim" },
+      { "jose-elias-alvarez/typescript.nvim" },
+      { "folke/lua-dev.nvim" },
+      {
+        "SmiteshP/nvim-navic",
+        config = function()
+          require "user.navic"
+        end,
+      },
+      { "RRethy/vim-illuminate" },
+      {
+        "j-hui/fidget.nvim",
+        config = function()
+          require "user.fidget"
+        end,
+      },
+      {
+        "lvimuser/lsp-inlayhints.nvim",
+        config = function()
+          require "user.lsp_inlayhints"
+        end,
+      },
+      { "https://git.sr.ht/~whynothugo/lsp_lines.nvim" },
+    },
+    event = "BufWinEnter",
+  }
+
+  -- LSP
 
   -- Completions
-  use "hrsh7th/nvim-cmp" -- The complention plugin
-  use "hrsh7th/cmp-buffer" -- buffer completions
-  use "hrsh7th/cmp-path" -- path completions
-  use "hrsh7th/cmp-cmdline" -- cmdline completions
-  use "saadparwaiz1/cmp_luasnip"
-  use "hrsh7th/cmp-nvim-lsp"
-  use "hrsh7th/cmp-nvim-lua"
-
-  -- Lua snippets
-  use "L3MON4D3/LuaSnip"
-  use "rafamadriz/friendly-snippets"
-    event = 'InserEnter',
+  use {
+    "hrsh7th/nvim-cmp", -- The complention plugins
+    config = function()
+      require "user.cmp"
+    end,
+    requires = {
+      {
+        "L3MON4D3/LuaSnip",
+        requires = {
+          "rafamadriz/friendly-snippets",
+        },
+      },
+      { "hrsh7th/cmp-buffer", after = "nvim-cmp" }, -- buffer completions
+      { "hrsh7th/cmp-path", after = "nvim-cmp" }, -- path completions
+      { "hrsh7th/cmp-cmdline", after = "nvim-cmp" }, -- cmdline completions
+      { "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
+      { "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
+      { "hrsh7th/cmp-nvim-lua", after = "nvim-cmp" },
+      -- Lua snippiets
+      {
+        "windwp/nvim-autopairs", -- Autopairs, integrates with both cmp and treesitter
+        config = function()
+          return require "user.autopairs"
+        end,
+        after = "nvim-cmp",
+      },
+    },
+    event = "InsertEnter",
+  }
 
   -- Syntax/Treesitter
-  use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
-  use "p00f/nvim-ts-rainbow"
-  use "ShooTeX/nvim-treesitter-angular"
-  use "windwp/nvim-ts-autotag"
-  use {"JoosepAlviste/nvim-ts-context-commentstring", event = "BufRead"}
+  --
+  use {
+    "nvim-treesitter/nvim-treesitter",
+    requires = {
+      { "p00f/nvim-ts-rainbow" },
+      { "ShooTeX/nvim-treesitter-angular" },
+      { "windwp/nvim-ts-autotag" },
+      { "JoosepAlviste/nvim-ts-context-commentstring", event = "BufRead" },
+    },
+    config = function()
+      require "user.treesitter"
+    end,
+    run = ":TSUpdate",
+  }
 
   -- Telescope
-  use "nvim-telescope/telescope.nvim"
-  use "nvim-telescope/telescope-media-files.nvim"
+  use {
+    "nvim-telescope/telescope.nvim",
+    requires = {
+      "nvim-lua/popup.nvim",
+      "nvim-lua/plenary.nvim",
+      {
+        "nvim-telescope/telescope-media-files.nvim",
+      },
+    },
+    config = function()
+      require "user.telescope"
+    end,
+    event = "BufWinEnter",
+  }
 
   -- Color
-  use "NvChad/nvim-colorizer.lua"
+  use {
+    "NvChad/nvim-colorizer.lua",
+    config = function()
+      require "user.colorizer"
+    end,
+    cmd = { "ColorizerToggle" },
+  }
 
   -- Utility
   use "rcarriga/nvim-notify"
   use "moll/vim-bbye"
-  use "lewis6991/impatient.nvim"
   use "stevearc/dressing.nvim"
   -- TODO
   use "ghillb/cybu.nvim"
@@ -103,48 +187,121 @@ return packer.startup(function(use)
   use { "ggandor/leap.nvim", requires = "tpope/vim-repeat", event = "BufRead" }
 
   -- Icons
-  use "kyazdani42/nvim-web-devicons"
+  use {
+    "kyazdani42/nvim-web-devicons",
+    module = "nvim-web-devicons",
+    config = function()
+      require "user.webdevicons"
+    end,
+  }
 
   -- Statusline
-  use "nvim-lualine/lualine.nvim"
+  use {
+    "nvim-lualine/lualine.nvim",
+    config = function()
+      require "user.lualine"
+    end,
+  }
 
   -- Startup
-  use "goolord/alpha-nvim"
+  use {
+    "goolord/alpha-nvim",
+    config = function()
+      require "user.alpha"
+    end,
+  }
 
   -- Indent
-  use "lukas-reineke/indent-blankline.nvim"
+  use {
+    "lukas-reineke/indent-blankline.nvim",
+    config = function()
+      require "user.indentline"
+    end,
+    event = 'BufReadPre'
+  }
 
   -- File Explorer
-  use "kyazdani42/nvim-tree.lua"
+  use {
+    "kyazdani42/nvim-tree.lua",
+    config = function()
+      require "user.nvim-tree"
+    end,
+    cmd = {
+      "NvimTreeClipboard",
+      "NvimTreeClose",
+      "NvimTreeFindFile",
+      "NvimTreeOpen",
+      "NvimTreeRefresh",
+      "NvimTreeToggle",
+    },
+    event = "VimEnter",
+  }
+  use {
+    "tamago324/lir.nvim",
+    disable = true,
+    config = function()
+      require "user.lir"
+    end,
+  }
 
   -- Comment
-  use "numToStr/Comment.nvim"
-  -- TODO
-  use "folke/todo-comments.nvim"
+  use {
+    "numToStr/Comment.nvim",
+    config = function()
+      require "user.comment"
+    end,
+    event = "BufWinEnter",
+  }
+
+  use {
+    "folke/todo-comments.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    config = function()
+      require "user.todo_comments"
+    end,
+    event = "BufWinEnter",
+  }
 
   -- Terminal
-  use "akinsho/toggleterm.nvim"
+  use {
+    "akinsho/toggleterm.nvim",
+    tag = "v2.*",
+    event = "BufWinEnter",
+    config = function()
+      require "user.toggleterm"
+    end,
+  }
 
   -- Project
-  use "ahmedkhalf/project.nvim"
+  use {
+    "ahmedkhalf/project.nvim",
+    config = function()
+      require "user.project"
+    end,
+  }
 
   -- Tabline
-  use "akinsho/bufferline.nvim"
+  use {
+    "akinsho/bufferline.nvim",
+    config = function()
+      require "user.bufferline"
+    end,
+  }
 
   -- TODO
   -- Quickfix
   use "kevinhwang91/nvim-bqf"
 
   -- Editing Support
-  use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
   use { "nacro90/numb.nvim", event = "BufRead" }
-  use "folke/lua-dev.nvim"
 
   -- Keybinding
-  use "folke/which-key.nvim"
-
-  -- Typescript TODO: set this up, also add keybinds to ftplugin
-  use "jose-elias-alvarez/typescript.nvim"
+  use {
+    "folke/which-key.nvim",
+    config = function()
+      require "user.whichkey"
+    end,
+  }
 
   -- Markdown
   -- TODO
@@ -160,11 +317,39 @@ return packer.startup(function(use)
   use "lunarvim/darkplus.nvim"
 
   -- git
-  use "lewis6991/gitsigns.nvim"
+  use {
+    "lewis6991/gitsigns.nvim",
+    requires = {
+      "nvim-lua/plenary.nvim",
+    },
+    event = "BufWinEnter",
+    config = function()
+      require "user.gitsigns"
+    end,
+  }
   -- TODO
   use "f-person/git-blame.nvim"
 
-  use 'chipsenkbeil/distant.nvim'
+  -- Sessions
+  use {
+    "rmagatti/auto-session",
+    config = function()
+      require "user.auto-session"
+    end,
+  }
+
+  -- Remote development
+  use {
+    "chipsenkbeil/distant.nvim",
+    config = function()
+      require "user.distant"
+    end,
+  }
+  use "jamestthompson3/nvim-remote-containers"
+
+  -- Graveyard
+  -- use "folke/trouble.nvim"
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then

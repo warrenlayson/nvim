@@ -23,10 +23,8 @@ M.server_capabilities = function()
   end)
 end
 
-require "user.lsp.lsp-signature"
 require "user.lsp.mason"
 require("user.lsp.handlers").setup()
-require "user.lsp.null-ls"
 
 local status_ok_1, lines = pcall(require, "lsp_lines")
 if not status_ok_1 then
