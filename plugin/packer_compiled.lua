@@ -144,6 +144,11 @@ _G.packer_plugins = {
     path = "/home/warren/.local/share/nvim/site/pack/packer/start/darkplus.nvim",
     url = "https://github.com/lunarvim/darkplus.nvim"
   },
+  ["distant.nvim"] = {
+    loaded = true,
+    path = "/home/warren/.local/share/nvim/site/pack/packer/start/distant.nvim",
+    url = "https://github.com/chipsenkbeil/distant.nvim"
+  },
   ["dressing.nvim"] = {
     loaded = true,
     path = "/home/warren/.local/share/nvim/site/pack/packer/start/dressing.nvim",
