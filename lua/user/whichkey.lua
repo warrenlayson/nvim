@@ -107,6 +107,7 @@ local mappings = {
     c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
     f = { "<cmd>Telescope find_files<cr>", "Find files" },
     t = { "<cmd>Telescope live_grep<cr>", "Find Text" },
+    T = { "<cmd>TodoTelescope<cr>", "Find Todo"},
     s = { "<cmd>Telescope grep_string<cr>", "Find String" },
     h = { "<cmd>Telescope help_tags<cr>", "Help" },
     H = { "<cmd>Telescope highlights<cr>", "Highlights" },
