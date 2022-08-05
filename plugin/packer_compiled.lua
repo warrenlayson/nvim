@@ -89,6 +89,11 @@ _G.packer_plugins = {
     path = "/home/warren/.local/share/nvim/site/pack/packer/start/alpha-nvim",
     url = "https://github.com/goolord/alpha-nvim"
   },
+  ["auto-session"] = {
+    loaded = true,
+    path = "/home/warren/.local/share/nvim/site/pack/packer/start/auto-session",
+    url = "https://github.com/rmagatti/auto-session"
+  },
   ["browse.nvim"] = {
     loaded = true,
     path = "/home/warren/.local/share/nvim/site/pack/packer/start/browse.nvim",
