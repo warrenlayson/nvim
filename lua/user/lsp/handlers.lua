@@ -10,12 +10,14 @@ end
 M.capabilities.textDocument.completion.completionItem.snippetSupport = true
 M.capabilities = cmp_nvim_lsp.update_capabilities(M.capabilities)
 
+local icons = require "user.icons"
+
 M.setup = function()
   local signs = {
-    { name = "DiagnosticSignError", text = "" },
-    { name = "DiagnosticSignWarn", text = "" },
-    { name = "DiagnosticSignHint", text = "" },
-    { name = "DiagnosticSignInfo", text = "" },
+    { name = "DiagnosticSignError", text = icons.diagnostics.Error },
+    { name = "DiagnosticSignWarn", text = icons.diagnostics.Warning },
+    { name = "DiagnosticSignHint", text = icons.diagnostics.Hint },
+    { name = "DiagnosticSignInfo", text = icons.diagnostics.Information },
   }
 
   for _, sign in ipairs(signs) do
@@ -125,10 +127,6 @@ M.on_attach = function(client, bufnr)
   lsp_keymaps(bufnr)
   lsp_highlight_document(client)
   attach_navic(client, bufnr)
-
-  if client.name == "tsserver" then
-    require("lsp-inlayhints").on_attach(bufnr, client)
-  end
 end
 
 function M.enable_format_on_save()
