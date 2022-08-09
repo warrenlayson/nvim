@@ -53,9 +53,30 @@ if vim.fn.has "nvim-0.8" == 1 then
       callback = function()
         local status_ok, _ = pcall(vim.api.nvim_buf_get_var, 0, "lsp_floating_window")
         if not status_ok then
-          require("user.winbar").get_winbar()
+          -- require("user.winbar").get_winbar()
         end
       end,
     }
   )
 end
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+  pattern = "*",
+  callback = function()
+    local hl_groups = {
+      "Normal",
+      "SignColumn",
+      "NormalNC",
+      "TelescopeBorder",
+      "NvimTreeNormal",
+      "EndOfBuffer",
+      "MsgArea",
+      "FidgetTitle",
+      "FidgetTask"
+    }
+    for _, name in ipairs(hl_groups) do
+      vim.cmd(string.format("highlight %s ctermbg=none guibg=none", name))
+    end
+  end,
+})
+vim.opt.fillchars = "eob: "
