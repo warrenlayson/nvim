@@ -8,6 +8,8 @@ if not config_status_ok then
   return
 end
 
+local icons = require("user.icons")
+
 local tree_cb = nvim_tree_config.nvim_tree_callback
 
 nvim_tree.setup {
@@ -53,8 +55,8 @@ nvim_tree.setup {
         default = "",
         symlink = "",
         folder = {
-          arrow_open = "",
-          arrow_closed = "",
+          arrow_open = icons.ui.ArrowOpen,
+          arrow_closed = icons.ui.ArrowClosed,
           default = "",
           open = "",
           empty = "",
@@ -78,10 +80,10 @@ nvim_tree.setup {
     enable = true,
     show_on_dirs = true,
     icons = {
-      hint = "",
-      info = "",
-      warning = "",
-      error = "",
+      hint = icons.diagnostics.Hint,
+      info = icons.diagnostics.Information,
+      warning = icons.diagnostics.Warning,
+      error = icons.diagnostics.Error,
     },
   },
   update_focused_file = {
