@@ -137,10 +137,11 @@ return packer.startup(function(use)
   use {
     "nvim-treesitter/nvim-treesitter",
     requires = {
+      { "nvim-treesitter/nvim-treesitter-textobjects" },
       { "p00f/nvim-ts-rainbow" },
       { "ShooTeX/nvim-treesitter-angular" },
       { "windwp/nvim-ts-autotag" },
-      { "JoosepAlviste/nvim-ts-context-commentstring", event = "BufRead" },
+      { "JoosepAlviste/nvim-ts-context-commentstring", event = "BufReadPost" },
     },
     config = function()
       require "user.treesitter"
@@ -174,9 +175,23 @@ return packer.startup(function(use)
   }
 
   -- Utility
-  use "rcarriga/nvim-notify"
+  use {
+    "rcarriga/nvim-notify",
+    config = function()
+      require "user.notify"
+    end,
+    -- after = "darkplus",
+  }
+
   use "moll/vim-bbye"
-  use "stevearc/dressing.nvim"
+
+  use {
+    "stevearc/dressing.nvim",
+    config = function()
+      require "user.dressing"
+    end,
+  }
+
   -- TODO
   use "ghillb/cybu.nvim"
   -- TODO
@@ -184,7 +199,7 @@ return packer.startup(function(use)
 
   -- TODO
   -- Motion
-  use { "ggandor/leap.nvim", requires = "tpope/vim-repeat", event = "BufRead" }
+  use { "ggandor/leap.nvim", requires = "tpope/vim-repeat", event = "BufRead", disable = true }
 
   -- Icons
   use {
@@ -201,6 +216,7 @@ return packer.startup(function(use)
     config = function()
       require "user.lualine"
     end,
+    -- after = "darkplus"
   }
 
   -- Startup
@@ -217,7 +233,7 @@ return packer.startup(function(use)
     config = function()
       require "user.indentline"
     end,
-    event = 'BufReadPre'
+    event = "BufReadPre",
   }
 
   -- File Explorer
@@ -283,17 +299,19 @@ return packer.startup(function(use)
   -- Tabline
   use {
     "akinsho/bufferline.nvim",
+    tag = "v2.*",
     config = function()
       require "user.bufferline"
     end,
+    event = "BufWinEnter",
   }
 
   -- TODO
   -- Quickfix
-  use "kevinhwang91/nvim-bqf"
+  use { "kevinhwang91/nvim-bqf", disable = true }
 
   -- Editing Support
-  use { "nacro90/numb.nvim", event = "BufRead" }
+  use { "nacro90/numb.nvim", event = "BufRead", disable = true }
 
   -- Keybinding
   use {
@@ -301,6 +319,7 @@ return packer.startup(function(use)
     config = function()
       require "user.whichkey"
     end,
+    event = "BufWinEnter",
   }
 
   -- Markdown
@@ -312,8 +331,6 @@ return packer.startup(function(use)
   }
 
   -- Colorscheme
-  use "folke/tokyonight.nvim"
-  use "lunarvim/onedarker.nvim"
   use "lunarvim/darkplus.nvim"
 
   -- git
@@ -327,8 +344,7 @@ return packer.startup(function(use)
       require "user.gitsigns"
     end,
   }
-  -- TODO
-  use "f-person/git-blame.nvim"
+  use { "f-person/git-blame.nvim", disable = true }
 
   -- Sessions
   use {
@@ -336,6 +352,7 @@ return packer.startup(function(use)
     config = function()
       require "user.auto-session"
     end,
+    disable = true,
   }
 
   -- Remote development
@@ -344,11 +361,17 @@ return packer.startup(function(use)
     config = function()
       require "user.distant"
     end,
+    disable = true,
   }
-  use "jamestthompson3/nvim-remote-containers"
+  use { "jamestthompson3/nvim-remote-containers", disable = true }
 
-  -- Graveyard
-  -- use "folke/trouble.nvim"
+  use {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("trouble").setup {}
+    end,
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
