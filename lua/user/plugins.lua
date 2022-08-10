@@ -193,9 +193,9 @@ return packer.startup(function(use)
   }
 
   -- TODO
-  use "ghillb/cybu.nvim"
+  use {"ghillb/cybu.nvim", disable = true}
   -- TODO
-  use "lalitmee/browse.nvim"
+  use {"lalitmee/browse.nvim", disable = true}
 
   -- TODO
   -- Motion
@@ -352,7 +352,6 @@ return packer.startup(function(use)
     config = function()
       require "user.auto-session"
     end,
-    disable = true,
   }
 
   -- Remote development
@@ -361,7 +360,6 @@ return packer.startup(function(use)
     config = function()
       require "user.distant"
     end,
-    disable = true,
   }
   use { "jamestthompson3/nvim-remote-containers", disable = true }
 
