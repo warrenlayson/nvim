@@ -88,10 +88,11 @@ local mappings = {
   e = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
   w = { "<cmd>w<CR>", "Save" },
   q = { "<cmd>lua require('user.functions').smart_quit()<CR>", "Quit" },
-  ["/"] = { '<cmd>lua require("Comment.api").toggle_current_linewise()<CR>', "Comment" },
+  ["/"] = { '<cmd>lua require("Comment.api").toggle.linewise.current(nil)<CR>', "Comment" },
   c = { "<cmd>Bdelete!<CR>", "Close Buffer" },
   v = { "<cmd>vsplit<CR>", "vsplit" },
   h = { "<cmd>split<CR>", "split" },
+  x = { "<cmd>lua require'user.autocommands'.toggle_transparent_window()<CR>", "Toggle Transparent Window"},
   ["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
   p = {
     name = "Packer",
@@ -177,6 +178,7 @@ local mappings = {
       "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
       "Workspace Symbols",
     },
+
   },
 
   t = {
@@ -205,7 +207,7 @@ local vopts = {
 }
 
 local vmappings = {
-  ["/"] = { '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>', "Comment" },
+  ["/"] = { '<ESC><CMD>lua require("Comment.api").toggle.linewise(nil ,vim.fn.visualmode())<CR>', "Comment" },
   l = {
     name = "LSP",
     a = { "<ESC><CMD>lua vim.lsp.buf.range_code_action()<CR>", "Code Action " },
