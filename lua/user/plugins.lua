@@ -120,6 +120,25 @@ return packer.startup(function(use)
       { "saadparwaiz1/cmp_luasnip", after = "nvim-cmp" },
       { "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
       { "hrsh7th/cmp-nvim-lua", after = "nvim-cmp" },
+      {
+        "zbirenbaum/copilot-cmp",
+        after = "nvim-cmp",
+        requires = {
+          "zbirenbaum/copilot.lua",
+          event = { "VimEnter" },
+          config = function()
+            vim.defer_fn(function()
+              require "copilot".setup {
+                cmp = {
+                  enabled = true,
+                  method = "getCompletionsCycling"
+                },
+                ft_disable = { "markdown", }
+              }
+            end, 100)
+          end,
+        },
+      },
       -- Lua snippiets
       {
         "windwp/nvim-autopairs", -- Autopairs, integrates with both cmp and treesitter
@@ -131,6 +150,8 @@ return packer.startup(function(use)
     },
     event = "InsertEnter",
   }
+
+  use { "github/copilot.vim", disable = true }
 
   -- Syntax/Treesitter
   --
@@ -193,9 +214,9 @@ return packer.startup(function(use)
   }
 
   -- TODO
-  use {"ghillb/cybu.nvim", disable = true}
+  use { "ghillb/cybu.nvim", disable = true }
   -- TODO
-  use {"lalitmee/browse.nvim", disable = true}
+  use { "lalitmee/browse.nvim", disable = true }
 
   -- TODO
   -- Motion

@@ -32,6 +32,7 @@ return {
     Event = "",
     Operator = "",
     TypeParameter = "",
+    Copilot = "",
   },
   type = {
     Array = "",
