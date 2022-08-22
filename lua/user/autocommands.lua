@@ -1,3 +1,4 @@
+local M = {}
 -- Use 'q' to quit from common plugins
 vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = { "qf", "help", "man", "lspinfo", "spectre_panel", "lir", "DressingSelect", "MarkDown" },
@@ -53,30 +54,56 @@ if vim.fn.has "nvim-0.8" == 1 then
       callback = function()
         local status_ok, _ = pcall(vim.api.nvim_buf_get_var, 0, "lsp_floating_window")
         if not status_ok then
-          -- require("user.winbar").get_winbar()
+          require("user.winbar").get_winbar()
         end
       end,
     }
   )
 end
 
-vim.api.nvim_create_autocmd("ColorScheme", {
-  pattern = "*",
-  callback = function()
-    local hl_groups = {
-      "Normal",
-      "SignColumn",
-      "NormalNC",
-      "TelescopeBorder",
-      "NvimTreeNormal",
-      "EndOfBuffer",
-      "MsgArea",
-      "FidgetTitle",
-      "FidgetTask"
-    }
-    for _, name in ipairs(hl_groups) do
-      vim.cmd(string.format("highlight %s ctermbg=none guibg=none", name))
-    end
-  end,
-})
-vim.opt.fillchars = "eob: "
+local color_scheme_group = vim.api.nvim_create_augroup("transparent_window", {})
+
+function M.enable_transparent_window()
+  vim.api.nvim_create_autocmd("ColorScheme", {
+    pattern = "*",
+    group = color_scheme_group,
+    callback = function()
+      local hl_groups = {
+        "Normal",
+        "SignColumn",
+        "NormalNC",
+        "TelescopeBorder",
+        "NvimTreeNormal",
+        "EndOfBuffer",
+        "MsgArea",
+        "FidgetTitle",
+        "FidgetTask",
+      }
+      for _, name in ipairs(hl_groups) do
+        vim.cmd(string.format("highlight %s ctermbg=none guibg=none", name))
+      end
+    end,
+  })
+  vim.opt.fillchars = "eob: "
+end
+
+function M.disable_transparent_window()
+  M.remove_augroup "transparent_window"
+  vim.notify "Disabled transparent window"
+end
+
+function M.toggle_transparent_window()
+  if vim.fn.exists "#transparent_window#ColorScheme" == 0 then
+    M.enable_transparent_window()
+  else
+    M.disable_transparent_window()
+  end
+end
+
+function M.remove_augroup(name)
+  if vim.fn.exists("#" .. name) == 1 then
+    vim.cmd("au! " .. name)
+  end
+end
+
+return M
